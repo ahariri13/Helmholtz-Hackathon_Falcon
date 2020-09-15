@@ -39,7 +39,8 @@ class GraphAE(torch.nn.Module):
         wholeAdj=to_dense_adj(adj, lengs, edge_attr=None, max_num_nodes=refMat.shape[1])
 
         r1,r2,adjMat,_,_= self.enc(whole[0].cuda(),wholeAdj.cuda(),refMat.cuda())
-                
+        del whole 
+        del wholeAdj
         return r1,r2,adjMat
 
     def reparametrize(self, mu, logvar):

@@ -14,5 +14,5 @@ def loss_function(r1,labels, lengs,refMat,mu,sig):
 
     cost1=lossMSE(r1,whole[0].cuda())
     KLD = -0.5 *(torch.mean(torch.sum(1 + sig - mu.pow(2) - sig.exp(), 1)))
-
+    del whole
     return cost1  + KLD 
